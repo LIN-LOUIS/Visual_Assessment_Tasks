@@ -1,0 +1,3 @@
+/home/lin/git/Visual_Assessment_Tasks/opencv(任务一）/build/CMakeFiles/opencv1.dir
+/home/lin/git/Visual_Assessment_Tasks/opencv(任务一）/build/CMakeFiles/edit_cache.dir
+/home/lin/git/Visual_Assessment_Tasks/opencv(任务一）/build/CMakeFiles/rebuild_cache.dir

@@ -2,45 +2,35 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 using namespace std;
-//1.使用指针遍历 cv::Mat
-void bin1r(Mat& img, int threshold) {
-    if (img.empty() || img.type() != CV_8UC1) {
-        return; // 确保图像是有效的灰度图像
-    }
-    for (int i = 0; i < img.rows; ++i) {
-        uchar* row_ptr = img.ptr<uchar>(i);  // 获取每一行的指针
-        for (int j = 0; j < img.cols; ++j) {
-            if (row_ptr[j] > threshold) {
-                row_ptr[j] = 255;  // 大于阈值设为255
-            } else {
-                row_ptr[j] = 0;    // 否则设为0
-            }
-        }
-    }
-}
-//2.使用 at() 方法遍历
-void bin2(Mat& img, int threshold) {
-    if (img.empty() || img.type() != CV_8UC1) {
-        return; // 确保图像是有效的灰度图像
-    }
-    for (int i = 0; i < img.rows; ++i) {
-        for (int j = 0; j < img.cols; ++j) {
-            uchar pixel_value = img.at<uchar>(i, j);
-            img.at<uchar>(i, j) = (pixel_value > threshold) ? 255 : 0;
-        }
-    }
-}
-void bin3(cv::Mat& img, int threshold) {
-    if (img.empty() || img.type() != CV_8UC1) {
-        return; // 确保图像是有效的灰度图像
-    }
-    MatIterator_<uchar> it, end;
-    for (it = img.begin<uchar>(), end = img.end<uchar>(); it != end; ++it) {
-        *it = (*it > threshold) ? 255 : 0;
-    }
-}
-int main(){
+#include <opencv2/opencv.hpp>
 
+int main() {
+    // 读取图像
+    Mat image = imread("../image/image1.jpg",IMREAD_GRAYSCALE);
+    if (image.empty()) {
+        std::cerr << "Error: Could not open or find the image!" << std::endl;
+        return -1;
+    }
+
+    // 应用高斯模糊以减少噪声
+    Mat blurred_image;
+    GaussianBlur(image, blurred_image, Size(5, 5), 1.5);
+
+    // 应用 Canny 边缘检测
+    Mat edges;
+    Canny(blurred_image, edges, 50, 150);
+
+    //改变图像大小
+    resize(edges, edges, Size(500, 500));
+    resize(image, image, Size(500, 500));
+
+    // 显示原图和边缘检测后的图像
+      ::imshow("Original Image", image);
+      ::imshow("Canny Edges", edges);
+
+    // 等待按键按下，关闭窗口
+      ::waitKey(0);
+      ::destroyAllWindows();
 
     return 0;
 }
