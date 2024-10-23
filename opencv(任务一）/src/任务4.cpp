@@ -60,6 +60,7 @@ int main() {
     imshow("膨胀后的图像(十字形)", dil);
     imshow("开运算后的图像(十字形)", open);
     imshow("闭运算后的图像(十字形)", close);
+    
     waitKey(0);
     return 0;
 }
