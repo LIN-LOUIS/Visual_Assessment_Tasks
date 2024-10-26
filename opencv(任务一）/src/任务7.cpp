@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 using namespace std;
+
 Mat gammaCorrection(const Mat& src, float gamma) {
     // 创建查找表，查找表的大小是256（每个灰度级的像素值对应一个映射值）
     Mat lut(1, 256, CV_8UC1);
