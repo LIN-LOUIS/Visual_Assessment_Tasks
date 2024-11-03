@@ -49,6 +49,8 @@ int main() {
         }
     }
 
+
+
         cv::Scalar color = cv::Scalar(0, 255, 255); // 设置边框颜色为黄色
         
         cv::polylines(result, filteredHulls, true, color, 2); // 绘制凸包的边界线
