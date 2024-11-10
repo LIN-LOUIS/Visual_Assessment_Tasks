@@ -31,7 +31,6 @@ print("X - Y:", Z_sub)
 print("X * Y:", Z_mul)
 print("X / Y:", Z_div)
 print("-----------")
-
 # 6. 了解abs()，sqrt()，neg()，mean()的作用
 print("abs()的作用:", Y.abs())                              #abs(): 绝对值
 print("sqrt()的作用:", Y.float().sqrt())                    # 需要将Y转换为浮点数来进行开方运算
